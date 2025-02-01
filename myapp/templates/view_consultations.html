@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Investment</th>
+            <th>Case Outline</th>
+            <th>Submitted At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consultation in consultations %}
+        <tr>
+            <td>{{ consultation.first_name }}</td>
+            <td>{{ consultation.last_name }}</td>
+            <td>{{ consultation.email }}</td>
+            <td>{{ consultation.phone_number }}</td>
+            <td>{{ consultation.investment }}</td>
+            <td>{{ consultation.case_outline }}</td>
+            <td>{{ consultation.submitted_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

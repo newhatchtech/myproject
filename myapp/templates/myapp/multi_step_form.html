@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <style>
+        .header-section {
+            background-color: #a7a4a1;
+            color: #fff;
+            font-weight: bold;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .form-container {
+            margin-top: 100px;
+            width: 50%;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        form label {
+            display: block;
+            margin: 10px 0;
+            font-size: 20px;
+            color: #a7a4a1;
+            padding: 15px;
+        }
+        form input[type="radio"] {
+            margin-left: -100px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            border: none;
+            background: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container .next-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .form-container .next-btn:hover {
+            background-color: #666;
+        }
+        .header-section h3 {
+            margin: 0;
+            padding-top: 20px;
+            margin-left: 17%;
+            color: #002060;
+        }
+
+        .btn-group {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px; /* Creates clear space between buttons */
+}
+
+.btn-group button {
+    padding: 10px 20px;
+    border: none;
+    width: 120px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.step-back-btn {
+    background: #cecccc;
+    color: white;
+}
+
+.complete-btn {
+    background: #444;
+    color: white;
+}
+
+.step-back-btn:hover {
+    background: #b1afae;
+    transform: scale(1.05);
+}
+
+.complete-btn:hover {
+    background: #666;
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div id="page-1" class="form-container">
+    <div class="header-section">
+        <h3>How much did you invest?</h3>
+        <button class="close-btn" onclick="closeHeader()">×</button>
+    </div>
+    <br><br><br><br><br><br><br>
+    <form id="form-page-1">
+        {% csrf_token %}
+        <label><input type="radio" name="investment_amount" value="less_than_5000"> Less than $5,000</label>
+        <label><input type="radio" name="investment_amount" value="5000_10000"> $5,000 - $10,000</label>
+        <label><input type="radio" name="investment_amount" value="10000_20000"> $10,000 - $20,000</label>
+        <label><input type="radio" name="investment_amount" value="21000_40000"> $21,000 - $40,000</label>
+        <label><input type="radio" name="investment_amount" value="40000_80000"> $40,000 - $80,000</label>
+        <label><input type="radio" name="investment_amount" value="80000_100000"> $80,000 - $100,000</label>
+        <label><input type="radio" name="investment_amount" value="100000_150000"> $100,000 - $150,000</label>
+        <label><input type="radio" name="investment_amount" value="150000_up"> $150,000 and up</label>
+
+        <div class="btn-group" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+            <button type="button" onclick="cancelForm()" style="padding: 10px 20px; background: #cecccc; color: white; width: 120px; text-align: center;">Cancel</button>
+            <button type="button" onclick="nextPage(2)" style="padding: 10px 20px; background: #444; color: white; width: 120px; text-align: center;">Next</button>
+        </div>
+    </form>
+</div>
+
+<!-- Page 2 -->
+<div id="page-2" class="form-container" style="display: none;">
+    <div class="header-section">
+        <h3>Select Your Payment Method</h3>
+        <button class="close-btn" onclick="closeHeader()">×</button>
+    </div>
+    <br><br><br><br><br><br>
+    <form id="form-page-2">
+        {% csrf_token %}
+        <label><input type="radio" name="payment_method" value="credit_debit_card"> Credit Card/Debit Card</label>
+        <label><input type="radio" name="payment_method" value="btc_crypto"> BTC/Crypto</label>
+        <label><input type="radio" name="payment_method" value="wire_transfer"> Wire Transfer</label>
+        <label><input type="radio" name="payment_method" value="money_gram_wu"> Money Gram/Western Union</label>
+        <label><input type="radio" name="payment_method" value="cash"> Cash</label>
+        <label><input type="radio" name="payment_method" value="other"> Other</label>
+
+        <div class="btn-group" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+            <button type="button" onclick="nextPage(1)" style="padding: 10px 20px; background: #cecccc; color: white; width: 120px; text-align: center;">Step Back</button>
+            <button type="button" onclick="nextPage(3)" style="padding: 10px 20px; background: #444; color: white; width: 120px; text-align: center;">Next</button>
+        </div>
+    </form>
+</div>
+
+<!-- Page 3 -->
+<div id="page-3" class="form-container" style="display: none;">
+    <div class="header-section">
+        <h3>Anything else we should know about?</h3>
+        <button class="close-btn" onclick="closeHeader()">×</button>
+    </div>
+    <br><br><br><br><br><br>
+    <form id="form-page-3">
+        {% csrf_token %}
+        <textarea name="additional_info" style="width: 100%; height: 300px; "></textarea>
+        <div class="btn-group">
+            <!-- Step Back Button -->
+            <button type="button" onclick="nextPage(2)" class="step-back-btn">
+                Step Back
+            </button>
+            
+            <!-- Next Button -->
+            <button type="button" onclick="nextPage(4)" class="complete-btn">
+                Next
+            </button>
+        </div>
+        
+    </form>
+</div>
+<!-- Page 4 (Final Page) -->
+<div id="page-4" style="display: none;">
+    <div class="header-section" style="text-align: center; padding: 20px 0; background-color: #a7a4a1; color: #fff; font-weight: bold; position: relative;">
+        <h3 style="margin: 0;">How can we reach you?</h3>
+    </div>
+    <form method="POST" action="{% url 'multi_step_form' %}" id="multi-step-form" style="width: 60%; margin: auto; margin-top: 50px;">
+        {% csrf_token %}
+        <input type="hidden" name="investment_amount" id="investment_amount">
+        <input type="hidden" name="payment_method" id="payment_method">
+        <input type="hidden" name="additional_info" id="additional_info">
+        
+        <!-- Two-column layout for Name and Last Name with reduced width -->
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <div style="flex: 1; margin-right: 10px;">
+                <input type="text" name="first_name" placeholder="Your Name" required style="width: 95%; padding: 8px;">
+            </div>
+            <div style="flex: 1; margin-left: 10px;">
+                <input type="text" name="last_name" placeholder="Last Name" required style="width: 95%; padding: 8px;">
+            </div>
+        </div>
+        
+        <!-- Two-column layout for Email and Phone Number with country code -->
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+            <div style="flex: 1; margin-right: 10px;">
+                <input type="email" name="email" placeholder="Enter your E-mail" required style="width: 95%; padding: 8px;">
+            </div>
+            <div class="phone-input" style="flex: 1; margin-left: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <select style="width: 30%; padding: 8px; border-right: 1px solid #ccc;">
+                        <option value="237">🇨🇲 +237</option>
+                        <option value="1">🇺🇸 +1</option>
+                        <option value="44">🇬🇧 +44</option>
+                        <option value="33">🇫🇷 +33</option>
+                        <option value="49">🇩🇪 +49</option>
+                        <option value="61">🇦🇺 +61</option>
+                        <option value="91">🇮🇳 +91</option>
+                        <option value="81">🇯🇵 +81</option>
+                        <option value="55">🇧🇷 +55</option>
+                        <option value="34">🇪🇸 +34</option>
+                    </select>
+                    <input type="text" name="phone_number" placeholder="Phone Number" required style="width: 70%; padding: 8px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons in the bottom-right of the page -->
+        <div class="btn-group" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px;">
+            <button type="button" onclick="nextPage(3)" style="padding: 10px 20px; background: #cecccc; color: white; width: 120px; text-align: center;">Step Back</button>
+            <button type="submit" style="padding: 10px 20px; background: #444; color: white; width: 120px; text-align: center;">Complete</button>
+        </div>
+    </form>
+</div>
+
+<!-- Page 4 (Final Page) -->
+<script>
+    function nextPage(pageNumber) {
+        if (pageNumber === 2) {
+            let investmentAmount = document.querySelector('input[name="investment_amount"]:checked').value;
+            document.getElementById('investment_amount').value = investmentAmount;
+        }
+        if (pageNumber === 3) {
+            let paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+            document.getElementById('payment_method').value = paymentMethod;
+        }
+        if (pageNumber === 4) {
+            let additionalInfo = document.querySelector('textarea[name="additional_info"]').value;
+            document.getElementById('additional_info').value = additionalInfo;
+        }
+
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById('page-' + i).style.display = i === pageNumber ? 'block' : 'none';
+        }
+    }
+
+    function closeHeader() {
+        const header = event.target.closest('.header-section');
+        header.style.display = 'none';
+    }
+
+    function cancelForm() {
+        window.location.href = '/cancel';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payback Clone</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <!-- Add Swiper's CSS -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+      
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <style>
+    
+    .dropdown-arrow {
+  font-size: 14px;
+  margin-left: 5px;
+}
+    /* Cookie Banner Styles */
+    .cookie-banner {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      height: 40px; /* Reduced height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 9999; /* Ensure it stays above other elements */
+    }
+    .cookie-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Add space between text and button */
+      font-size: 14px; /* Adjusted font size */
+    }
+    .cookie-link {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .cookie-link:hover {
+      text-decoration: underline;
+    }
+    .cookie-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px; /* Adjusted padding for smaller button */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .cookie-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Body Padding for Cookie Banner */
+    body {
+      margin: 0;
+      padding-top: 40px; /* Match the reduced height of the banner */
+    }
+
+    /* Navigation Bar Styles */
+    .nav-bar {
+      background-color: #002855;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    /* Navigation Bar Styles */
+    .nav-bar {
+      background-color: #002855;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+/* Base styles for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #12245a; /* Dark navy blue */
+  padding: 10px 20px;
+  color: white;
+}
+
+/* Left section with logo */
+.navbar-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-left .shield {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #12245a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-left span {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Right section with icons and menu */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right .icon img {
+  width: 28px;
+  height: 28px;
+  filter: invert(100%); /* Converts the icon to white */
+}
+
+.navbar-right .menu-divider {
+  width: 1px;
+  height: 30px;
+  background-color: white;
+}
+
+.navbar-right .menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.navbar-right .menu-icon span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+/* Footer info section styles */
+.footer-info {
+  background-color: #12245a; /* Dark navy blue */
+  color: white; /* White text */
+  text-align: center; /* Center-align the text */
+  padding: 20px; /* Space around the text */
+  font-family: Arial, sans-serif; /* Font for text */
+  font-size: 14px; /* Size for the text */
+  line-height: 1.8; /* Improve readability with line spacing */
+}
+
+.footer-info p {
+  margin: 0 0 15px; /* Add space between paragraphs */
+}
+}
+    .cookie-space {
+      height: 50px; /* Adjust height based on the banner's height */
+    }
+
+    /* Navigation Bar Styles */
+    .nav-bar {
+      background-color: #002855;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .testimonials-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px;
+}
+
+.testimonial-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-thumbnail {
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    position: relative;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    background-image: url('path-to-play-icon.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.play-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #002855; /* Navy blue */
+    background: #f8f9fa; /* Light gray */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background: #ffc107; /* Yellow */
+    color: #002855;
+}
+
+.pagination .active {
+    background: #ffc107; /* Yellow */
+    color: #002855;
+    font-weight: bold;
+}
+
+.pagination .dots {
+    color: #999;
+}
+
+.pagination .arrow {
+    font-weight: bold;
+    color: #0c1130;
+}
+
+.pagination .arrow.first,
+.pagination .arrow.last {
+    font-size: 18px;
+    
+}
+
+.pagination {
+    display: flex;
+    justify-content: center; /* Center the pagination */
+    align-items: center; /* Align items on the same line */
+    gap: 8px; /* Space between items */
+    font-family: Arial, sans-serif;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px; /* Set width for uniform sizing */
+    height: 36px; /* Set height for uniform sizing */
+    text-decoration: none;
+    font-size: 16px; /* Adjust font size */
+    color: #002855; /* Navy blue */
+    background: #f8f9fa; /* Light gray */
+    border-radius: 50%; /* Circle-shaped items */
+    transition: all 0.3s ease;
+    border: 1px solid #ddd; /* Add border for better visibility */
+}
+
+.pagination a:hover {
+    background: #ffc107; /* Highlight on hover */
+    color: #002855;
+}
+
+.pagination .active {
+    background: #ffc107; /* Yellow background for active page */
+    color: #002855;
+    font-weight: bold;
+    border: 1px solid #ffc107;
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 30px; /* Increased gap for larger videos */
+}
+
+.video-wrapper {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 190%; /* Increased width */
+    height: 160%; /* Increased height */
+    border: none;
+}
+
+
+@media (max-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr; /* One column on smaller screens */
+    }
+}.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 40px; /* Larger gap for bigger videos */
+}
+
+.video-wrapper {
+    position: relative;
+    padding-top: 60%; /* Slightly taller for better aspect ratio balance */
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%; /* Further increased width */
+    height: 150%; /* Further increased height */
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .testimonial-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 5px; /* Further reduced spacing between items */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .testimonial-item iframe {
+    width: 100%;
+    max-width: 300px; /* Keep size consistent */
+    height: 250px;
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+   </style>
+      
+</head>
+<body>
+    <section class="cookie-banner" id="cookie-banner">
+      <span>We use cookies – <a href="#" class="cookie-link">Here's why...</a></span>
+      <button class="cookie-button" onclick="hideCookieBanner()">OK</button>
+    </section>
+    
+    <!-- Spacer to avoid overlapping navigation -->
+    <div class="cookie-space" id="cookie-space"></div>
+  
+     <!-- Hero Section -->
+     <nav class="navbar">
+      <div class="navbfar-left">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'myapp/images/logo.svg' %}" alt="Logo" class="shield">
+            </a>
+        </div>
+    </div>
+      <div class="navbar-right">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+        </div>
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User">
+        </div>
+        <div class="menu-divider"></div>
+        <div class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+    <section class="testimonials-section" style="padding: 20px;">
+      <div class="container" style="max-width: 700px; margin: auto;">
+        <h2>Customer Reviews and Testimonials</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-item">
+            <iframe
+              src="https://www.youtube.com/embed/qRfOakNl-uA"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="testimonial-item">
+            <iframe
+              src="https://www.youtube.com/embed/U_KSYbgZ6P8"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="testimonial-item">
+            <iframe
+              src="https://www.youtube.com/embed/QthZLK8qJyk"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="testimonial-item">
+            <iframe
+              src="https://www.youtube.com/embed/BNzD7cP4MeU"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 20px;">
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">&#171;</a> <!-- First -->
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">&#8249;</a> <!-- Previous -->
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #ffc107; border-radius: 50%; font-weight: bold; border: 1px solid #ffc107;">1</a> <!-- Active -->
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">2</a>
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">3</a>
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">4</a>
+        <span style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; font-size: 16px; color: #002855;">...</span>
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">10</a>
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">&#8250;</a> <!-- Next -->
+        <a href="#" style="display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; text-decoration: none; font-size: 16px; color: #002855; background: #f8f9fa; border-radius: 50%; transition: all 0.3s ease; border: 1px solid #ddd;">&#187;</a> <!-- Last -->
+    </div>
+    
+    </section>
+   
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: Arial, sans-serif;">
+        <div style="display: flex; gap: 20px; margin-top: 20px; width: 80%; max-width: 1200px;">
+            <!-- Left Content Section -->
+            <div style="flex: 3;">
+                <p style="margin-bottom: 20px;">
+                    <strong>Payback</strong> was founded to protect traders from unregulated Binary Option and Forex brokers. 
+                    The company comprises professionals with vast experience in the Forex industry and cybercrimes. For over a decade, we have 
+                    claimed funds for hundreds of victims worldwide.
+                </p>
+                <hr style="border: 1px solid #ddd; margin-bottom: 20px;" />
+                
+                <h2 style="font-size: 1.5em; margin-bottom: 15px;">The Process We Follow to Trace Misplaced or Lost Funds</h2>
+                <p style="margin-bottom: 15px;">
+                    We review the details of the complainant and collect all the necessary information, including correspondence with the 
+                    merchant/broker, confirmation that the transaction actually occurred, and the broker's platform/web page. Because we respect 
+                    privacy, your details are never sent to third parties.
+                </p>
+                <p style="margin-bottom: 20px;">
+                    Once you have helped us compile everything we need, we will confront the owners of the bank or the company in question. 
+                    Finally, we claim back your funds via a quick and secure payment method.
+                </p>
+                
+                <h2 style="font-size: 1.5em; margin-bottom: 15px;">Payback Services</h2>
+                <p style="margin-bottom: 20px;">
+                    We know the internet has become a huge part of people's lives and that it comes with its fair share of challenges. The majority of 
+                    websites offer genuine products and services and do a good job of safeguarding your information, but some companies have 
+                    ulterior motives. This is where Payback comes in. We retrieve funds from unregulated brokers and any other company committing 
+                    online fraud. We offer a free consultation at any time.
+                </p>
+                
+                <h2 style="font-size: 1.5em; margin-bottom: 15px;">Customer Testimonials</h2>
+                <p>
+                    There are many genuine Payback Reviews on our website that show customer satisfaction. Many of our clients had lost hope 
+                    in ever retrieving their money but we helped to secure their funds. Currently, our ...
+                </p>
+            </div>
+            
+            <!-- Right Table of Contents -->
+            <div style="flex: 1; background-color: #f8f9fa; padding: 20px; border: 1px solid #ddd; border-radius: 5px; height: fit-content;">
+                <h3 style="font-size: 1.2em; margin-bottom: 15px; color: #002855;">Table of Contents</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95em; line-height: 1.8;">
+                    <li><a href="#" style="text-decoration: none; color: #002855;">The Process We Follow to Trace Misplaced or Lost Funds</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #002855;">Payback Services</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #002855;">Customer Testimonials</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="scam-recovery-section">
+        <div class="header">
+          <h1>Retrieve your money from a scam!</h1>
+          <p>Thousands of clients used our Investigation Report to retrieve their losses. Start with a free consultation</p>
+          <div class="dropdown-container">
+            <select>
+              <option>Choose a scam type</option>
+              <option>Online Scam</option>
+              <option>Investment Fraud</option>
+              <option>Phishing Scam</option>
+            </select>
+            <button class="cta-button">Get a free consultation</button>
+          </div>
+        </div>
+      </div>
+
+    <section class="scam-types-section">
+        <h2>The types of scams we can help you with</h2>
+        <table class="scam-types-table">
+          <tr>
+            <td>
+              <i class="fas fa-chart-line"></i>
+              Binary options
+            </td>
+            <td>
+              <i class="fas fa-coins"></i>
+              Digital Currency
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i class="fas fa-exchange-alt"></i>
+              Forex
+            </td>
+            <td>
+              <i class="fas fa-home"></i>
+              Property scams
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i class="fas fa-credit-card"></i>
+              Credit card phishing
+            </td>
+            <td>
+              <i class="fas fa-chart-bar"></i>
+              Stock trading
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i class="fas fa-heart"></i>
+              Romance
+            </td>
+            <td>
+              <i class="fas fa-ellipsis-h"></i>
+              Other scams
+            </td>
+          </tr>
+        </table>
+      </section>
+      
+  <section class="footer-info">
+    <p>
+      Money Back Ltd., which trades as Payback, is an Israeli company No. 515711653, authorized and regulated in Israel, and operates globally.
+    </p>
+    <p>
+      In the UK, the company operates through a legal exclusion, which removes the need to be authorized and regulated by the FCA.
+    </p>
+    <p>
+      In Australia, the company is registered as Money Back (Aust) Ltd, authorized and regulated under ARBN 678842236 | ASIC 562295 | AFCA 103819 | Australian Credit Licence No. 532450
+    </p>
+  </section>
+  
+  <footer style="background-color: #0c1130; color: white; padding: 20px; font-family: Arial, sans-serif;">
+    <div class="footer-container">
+      <!-- Sitelinks Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('sitelinks')">Sitelinks <span class="dropdown-arrow">▼</span></h4>
+        <ul id="sitelinks" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Testimonial</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Contact Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">FAQ</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Affiliated Page</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Sitemap</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Us Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('contactus')">Contact us <span class="dropdown-arrow">▼</span></h4>
+        <ul id="contactus" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Email Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Call Us</a></li>
+        </ul>
+      </div>
+  
+      <!-- Location Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('location')">Location <span class="dropdown-arrow">▼</span></h4>
+        <ul id="location" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Our Offices</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Maps</a></li>
+        </ul>
+      </div>
+  
+      <!-- Other Sections -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('officehours')">Our office hours (GMT) <span class="dropdown-arrow">▼</span></h4>
+        <ul id="officehours" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Monday - Friday: 9AM - 5PM</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('social')">Social <span class="dropdown-arrow">▼</span></h4>
+        <ul id="social" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Facebook</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Twitter</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Instagram</a></li>
+        </ul>
+      </div>
+  
+      <hr style="border: 1px solid white; margin: 10px 0;" />
+      <div class="footer-links">
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Terms & Conditions</a>
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Privacy Policy</a>
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Legal</a>
+      </div>
+      <div class="footer-bottom" style="margin-top: 10px;">
+        <span>© Payback</span>
+        <span style="float: right;">
+          <span style="background-color: #666; color: white; padding: 2px 5px; margin-right: 5px;">DMCA</span>
+          <span style="background-color: #222; color: white; padding: 2px 5px;">PROTECTED</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+  <div class="disclaimer-section">
+    <div class="partners">
+      <p>Official Partners:</p>
+      <div class="partner-logos">
+        <img src="utech-logo.png" alt="Utech Global">
+        <img src="lseg-logo.png" alt="LSEG Data & Analytics">
+        <img src="influere-logo.png" alt="Influere Investigations">
+      </div>
+    </div>
+    <hr>
+    <div class="disclaimer">
+      <p>
+        <strong>Disclaimer:</strong> Payback specializes in preparing investigation reports and cryptocurrency tracing reports.
+        We do not engage in any financial services, funds management, or provide financial advice, investment guidance, or related services.
+        The services and products commissioned will incur fees and/or commissions based on the service and the complexity of each case.
+        Our reports are intended for informational purposes only and should not be construed as financial recommendations or endorsements.
+      </p>
+    </div>
+    <div class="info">
+      <p>
+        <strong>For your information:</strong> Although the process of recovering your losses from an online scam can be very tedious and long,
+        sometimes longer than a year, it is a process you can undertake yourself, and it does not require any official representation.
+        For more information on DIY Recovery, <a href="your-article-link.html">Read This Article.</a>
+      </p>
+    </div>
+    <div class="note">
+      <p>The Company cannot accept prohibited payment methods.</p>
+    </div>
+  </div>
+  
+    <script src="{% static 'myapp/js/script.js' %}"></script>
+   
+    <script>
+    
+
+  </script>
+  <script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+
+                // Toggle the display of the content
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    });
+
+    // Function to hide the banner
+    function hideCookieBanner() {
+      const banner = document.getElementById("cookie-banner");
+      banner.style.display = "none"; // Hide the banner
+      document.body.style.paddingTop = "0"; // Reset padding to remove the space
+    }
+
+   
+</script>
+</body>
+
+</html>

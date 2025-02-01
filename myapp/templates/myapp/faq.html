@@ -1,0 +1,1555 @@
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payback Clone</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <!-- Add Swiper's CSS -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+      
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <style>
+     
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .faq {
+            text-align: left;
+            margin-top: 20px;
+            color: #030e31;
+        }
+        .faq-item {
+            border-bottom: 1px solid #ccc;
+            padding: 50px 0;
+            font-size: x-large;
+        }
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .answer {
+            display: none;
+            padding-top: 10px;
+        }
+        .contact {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    .dropdown-arrow {
+  font-size: 14px;
+  margin-left: 5px;
+}
+    /* Cookie Banner Styles */
+    .cookie-banner {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      height: 40px; /* Reduced height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 9999; /* Ensure it stays above other elements */
+    }
+    .cookie-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Add space between text and button */
+      font-size: 14px; /* Adjusted font size */
+    }
+    .cookie-link {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .cookie-link:hover {
+      text-decoration: underline;
+    }
+    .cookie-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px; /* Adjusted padding for smaller button */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .cookie-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Body Padding for Cookie Banner */
+    body {
+      margin: 0;
+      padding-top: 40px; /* Match the reduced height of the banner */
+    }
+/* Base styles for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #002855; /* Dark navy blue */
+  padding: 10px 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Left section with logo */
+.navbar-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-left .shield {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #002855;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-left span {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Right section with icons and menu */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right .icon img {
+  width: 28px;
+  height: 28px;
+  filter: invert(100%); /* Converts the icon to white */
+}
+
+.navbar-right .menu-divider {
+  width: 1px;
+  height: 30px;
+  background-color: white;
+}
+
+.navbar-right .menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.navbar-right .menu-icon span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+/* Dropdown menu */
+.navbar-dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #002855;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  z-index: 9999;
+}
+
+.navbar-dropdown a {
+  color: rgb(194, 192, 192);
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  
+}
+
+.navbar-dropdown a:hover {
+  background-color: #0056b3;
+  border-radius: 3px;
+}
+
+/* Dropdown menu active state */
+.navbar-dropdown.active {
+  display: flex;
+  
+}
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #001f3f;
+  color: white;
+  
+}
+.navbar-dropdown {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.accordion-content {
+  transition: max-height 0.3s ease-out;
+}
+
+.navbar-left .logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+.contact-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: #002060;
+  margin-bottom: 10px;
+  
+}
+.btn-submit {
+  background-color: #ffcc00;
+  color: #002060;
+  padding: 20px 60px;
+  border: none;
+  border-radius: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+}
+
+/* Dropdown */
+.navbar-dropdown {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 100%;
+  height: 90%;
+  background-color: #ffffff;
+  color: #001f3f;
+ 
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+/* Accordion */
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+  
+}
+
+.accordion-header {
+  font-size: 18px;
+  padding: 30px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #001f3f;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f5f5f5;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+}
+
+.accordion-item.open .accordion-content {
+  display: block;
+  
+}
+
+/* Footer info section styles */
+.footer-info {
+  background-color: #12245a; /* Dark navy blue */
+  color: white; /* White text */
+  text-align: center; /* Center-align the text */
+  padding: 20px; /* Space around the text */
+  font-family: Arial, sans-serif; /* Font for text */
+  font-size: 14px; /* Size for the text */
+  line-height: 1.8; /* Improve readability with line spacing */
+}
+
+.footer-info p {
+  margin: 0 0 15px; /* Add space between paragraphs */
+}
+}
+    .cookie-space {
+      height: 50px; /* Adjust height based on the banner's height */
+    }
+
+    /* Navigation Bar Styles */
+    .nav-bar {
+      background-color: #002855;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Dropdown Arrow */
+/*.dropdown-arrow {
+  float: right;
+  width: 12px;
+  height: 12px;
+  border: solid #001f3f;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-top: 5px;
+  transform: rotate(45deg); /* Default arrow pointing down */
+  transition: transform 0.3s ease;
+} */
+
+/* Rotate arrow when the section is open */
+.accordion-item.open .dropdown-arrow {
+  transform: rotate(-135deg); /* Arrow pointing up */
+}
+.phone-field {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+    width: 100%; /* Matches the size of other fields */
+    height: 40px; /* Matches the height of other fields */
+    position: relative;
+    gap: 1px;
+}
+
+.country-code-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 15px;
+}
+
+.country-code-container select {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    appearance: none;
+    cursor: pointer;
+    width: 80px;
+    text-align: center;
+}
+
+.dropdown-arrow {
+    position: absolute;
+    right: -11px;
+    pointer-events: none;
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.phone-field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.form-group .form-column {
+    display: flex;
+    flex: 1;
+    margin-right: 10px; /* Add horizontal gap */
+}
+
+.form-group .form-column:last-child {
+    margin-right: 0; /* Remove gap for the last column */
+}
+.country-code-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 5px;
+    margin-bottom: 4%;
+    
+}
+
+.country-code-container select {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    appearance: none;
+    cursor: pointer;
+    width: 80px;
+    text-align: center;
+    
+}
+
+.dropdown-arrow {
+    border: none;
+    
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #000;
+    outline: none;
+    padding: 0;
+}
+
+.phone-field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+}
+/* Style the dropdown when expanded */
+.styled-select {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    background: transparent;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    color: #333;
+}
+
+.styled-select option {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Ensure dropdown options are visible when expanded */
+.styled-select[size] {
+    overflow-y: auto; /* Add scroll if too many options */
+    max-height: 150px; /* Limit height */
+    border: 1px solid #ccc;
+}
+
+/* Custom toggle button (dropdown arrow) */
+.dropdown-arrow img {
+    display: block;
+}
+
+/* Form Section */
+.form-section {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
+}
+/* Hide the checkboxes */
+.toggle {
+  display: none;
+}
+
+/* Hide the messages by default */
+.message {
+  display: none;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Show the message when the checkbox is checked */
+.toggle:checked + label + .message {
+  display: block;
+}
+
+/* Style the label to make it look like a clickable item */
+label {
+  cursor: pointer;
+  padding-left: 20px;
+  display: block;
+  font-size: 16px;
+  color: #007BFF;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+/* Optional: Add hover effect for the labels */
+label:hover {
+  color: #0056b3;
+}
+
+/* Add an arrow icon to the label */
+label span {
+  font-size: 16px;
+  color: #007BFF;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when the checkbox is checked */
+.toggle:checked + label span {
+  transform: rotate(180deg);
+}
+
+
+
+.scam-types-section {
+  text-align: center;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  
+}
+
+.scam-types-section h2 {
+  font-size: 1.8rem;
+  color: #002060;
+  margin-bottom: 20px;
+}
+
+.scam-types-table {
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.scam-types-table td {
+  border: 1px solid #002060;
+  padding: 40px;
+  text-align: center;
+  font-size: 1rem;
+  
+}
+
+.scam-types-table td i {
+  font-size: 1.5rem;
+  color: #002060;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.scam-types-table td:hover {
+  background-color: #002060;
+  cursor: pointer;
+}
+
+.scam-types-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.scam-types-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+
+
+
+
+.accordion-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.accordion-title {
+  font-size: 2.0rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #001F54;
+}
+.accordion-item {
+  border-top: 1px solid #ccc;
+}
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.accordion-header:hover {
+  background-color: #ccc;
+}
+.accordion-content {
+  display: none;
+  padding: 1rem;
+  backgrohund: #ccc;
+  font-size: 1.4rem;
+}
+.accordion-item:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+
+
+.contact-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.contact-title {
+  font-size: 60px;
+  font-weight: bold;
+  color: #002060;
+  margin-bottom: 30px;
+}
+
+.contact-subtitle {
+  font-size: 25px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group, .form-row {
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-control {
+  flex: 1; /* Ensures all inputs in the row take equal space */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%; /* For consistent width */
+  box-sizing: border-box;
+}
+
+
+.phone-group {
+  display: flex;
+  gap: 5px;
+}
+
+.phone-group .country-code {
+  width: 30%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  font-size: 14px;
+  background-color: #eee;
+}
+
+textarea.form-control {
+  resize: none;
+  height: 200px;
+  border-color: ;
+}
+
+.btn-submit {
+  background-color: #ffcc00;
+  color: #002060;
+  padding: 25px 100px;
+  border: none;
+  border-radius: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #ffb800;
+}
+
+select.form-control, input.form-control {
+  appearance: none;
+  width: 215px;
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+
+   </style>
+      
+</head>
+<body>
+  <section class="cookie-banner" id="cookie-banner">
+    <span>We use cookies – <a href="#" class="cookie-link">Here's why...</a></span>
+    <button class="cookie-button" onclick="hideCookieBanner()">OK</button>
+  </section>
+  
+  <!-- Spacer to avoid overlapping navigation -->
+  <div class="cookie-space" id="cookie-space"></div>
+  
+  <!-- Navbar Dropdown with Accordion -->
+<!-- Spacer to avoid overlapping navigation -->
+<div class="cookie-space" id="cookie-space"></div>
+<!-- Navbar Dropdown with Accordion -->
+<div class="navbar-dropdown" id="menu">
+  <!-- Testimonials Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <a href="{% url 'testimonials' %}" style="color: #001f3f;">Testimonials</a>
+
+
+
+      
+      <span class="dropdown-arrhow"></span>
+    </div>
+    <div class="accordion-content">
+      
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Services
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+     
+      <!-- Sub-menu under Services -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Investigation
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li style="background-color: white;">
+              <a href="{% url 'cyberinvestigations' %}" style="text-decoration: none; color: black;">
+                Cyber Investigation (Fraud Investigation)
+              </a>
+            </li>
+            
+            <li>Crypto Asset Tracing</li>
+            <li>KYC Service</li>
+            <li>Binary Currency Scam</li>
+            <li>Forex Scam</li>
+            <li>Digital Currency Scam</li>
+            <li>Stock Trading Scam</li>
+            <li>Credit Card Phishing Scam</li>
+            <li>Property Scam</li>
+            <li>Romance Scam</li>
+            <li>Other Scams</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          ADR Courses
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#adr_course">ADR Course</a>
+          <a href="#adr_advanced_course">ADR Advanced Course</a>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Professional Consulting
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li>Scam Restitution Consulting</li>
+            <li>ADR Guidance</li>
+            <li>Claims & Disputes</li>
+            <li>Forced Account Liquidation</li>
+            <li>Regulatory Compliance & Other Services</li>
+            <li>SRMI Compliance</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          B2B Cyber Security
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li>Blue Team</li>
+            <li>Red Team</li>
+            <li>Security Consulting</li>
+            <li>Cyber Intelligence</li>
+            <li>Social Engineering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Safety Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Online Safety
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#safety1">Whistleblowing</a>
+      <br>
+      <a href="#safety2">Scam</a>
+      <br>
+      <a href="#safety2">imposters & opycats</a>
+      <br>
+      <a href="#safety2">Fraud prevention Tools</a>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Blog
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#blog1">Latest Posts</a>
+    </div>
+  </div>
+
+  <!-- Payback Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Payback
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#payback1">Details</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      FAQ
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#faq1">General Questions</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar Dropdown with Accordion -->
+<div class="navbar-dropdown" id="menu">
+  <!-- Testimonials Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Testimonials
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#testimonials1">Testimonial 1</a>
+      <a href="#testimonials2">Testimonial 2</a>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Services
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#services1">Service 1</a>
+      <a href="#services2">Service 2</a>
+
+      <!-- Sub-menu under Services -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Investigation
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#investigation1">Investigation Service 1</a>
+          <a href="#investigation2">Investigation Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Education
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#education1">Education Service 1</a>
+          <a href="#education2">Education Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Professional Consulting
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#consulting1">Consulting Service 1</a>
+          <a href="#consulting2">Consulting Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          B2B Cyber Security
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#cybersecurity1">Cyber Security Service 1</a>
+          <a href="#cybersecurity2">Cyber Security Service 2</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Safety Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Online Safety
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#safety1">Safety Tip 1</a>
+      <a href="#safety2">Safety Tip 2</a>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Blog
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#blog1">Latest Posts</a>
+    </div>
+  </div>
+
+  <!-- Payback Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Payback
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#payback1">Details</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      FAQ
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#faq1">General Questions</a>
+    </div>
+  </div>
+</div>
+
+    <nav class="navbar">
+        <div class="navbfar-left">
+          <div class="logo">
+              <a href="{% url 'index' %}">
+                  <img src="{% static 'myapp/images/logo.svg' %}" alt="Logo" class="shield">
+              </a>
+          </div>
+      </div>
+      
+  <div class="navbar-right">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User">
+    </div>
+    <div class="menu-divider"></div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Navbar Dropdown with Accordion -->
+    <div class="navbar-dropdown" id="menu">
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Testimonials
+        </div>
+        <div class="accordion-content">
+          <a href="#testimonials1">Testimonial 1</a>
+          <a href="#testimonials2">Testimonial 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Services
+        </div>
+        <div class="accordion-content">
+          <a href="#services1">Service 1</a>
+          <a href="#services2">Service 2</a>
+          
+          <!-- Sub-menu under Services -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Investigation
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#investigation1">Investigation Service 1</a>
+              <a href="#investigation2">Investigation Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Education
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#education1">Education Service 1</a>
+              <a href="#education2">Education Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Professional Consulting
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#consulting1">Consulting Service 1</a>
+              <a href="#consulting2">Consulting Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              B2B Cyber Security
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#cybersecurity1">Cyber Security Service 1</a>
+              <a href="#cybersecurity2">Cyber Security Service 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Online Safety
+        </div>
+        <div class="accordion-content">
+          <a href="#safety1">Safety Tip 1</a>
+          <a href="#safety2">Safety Tip 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Blog
+        </div>
+        <div class="accordion-content">
+          <a href="#blog1">Latest Posts</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Payback
+        </div>
+        <div class="accordion-content">
+          <a href="#payback1">Details</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          FAQ
+        </div>
+        <div class="accordion-content">
+          <a href="#faq1">General Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h1>Payback - How Does It Work?</h1>
+    <p>In order to better understand how Payback works, and the systems we have in place for the recovery of your funds, you'll find below a series of frequently asked questions.</p>
+    
+    <div class="faq">
+        <div class="faq-item">
+            <div class="question">How long does an average case take to complete? <span>&#9662;</span></div>
+            <div class="answer">Although our experienced team will look to complete your case (recover a substantial part if not all of your lost funds) as soon as possible, each case is unique. On average this process takes from 3 months to a year.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What is the cost of pursuing a case via Payback? <span>&#9662;</span></div>
+            <div class="answer">Payback provides the tools you need to pursue your case in the form of a detailed Investigation Report that includes a suggested Action Plan for you to follow. Such a report costs $3,500, with an additional $750 per transaction.
+
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Why don’t you charge me at the end of the process only? <span>&#9662;</span></div>
+            <div class="answer">Each case requires a significant amount of man-hours to investigate, process, and bring to successful completion. We charge a fixed fee to cover the costs of producing the investigation report, so it is necessary to arrange payment prior to the start of the investigation.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Where is Payback based? <span>&#9662;</span></div>
+            <div class="answer">
+                Payback is located in Ramat Gan, Israel.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">How do I know that Payback isn’t a scam? <span>&#9662;</span></div>
+            <div class="answer">We believe that a question like that is best answered by the company’s clients. We invite you to check out the hundreds of great reviews by our clients to verify that we are a legitimate and reputable organization. We are also registered with the Israeli justice department, as well as this our staff will happily forward you the relevant credentials.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Why is Payback not regulated by the FCA? <span>&#9662;</span></div>
+            <div class="answer">We are an authorized and regulated Israeli company, based outside of the UK, hence we comply with the relevant legal exemption that applies to us. However, we do adhere to all relevant legal parameters as we go about securing the recovery of your lost assets.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Are you legal professionals? <span>&#9662;</span></div>
+            <div class="answer">The services are provided by and/or under the supervision of licensed attorneys. We primarily collaborate with a team of experts, including legal professionals, to conduct the investigation and produce the subsequent Investigation Report.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Will your actions lead to the taking of scammers to court? <span>&#9662;</span></div>
+            <div class="answer">No, our services do not include court representation. But, our methods of recovering your lost money involve Alternative Dispute Resolution outside of court in order to speed up things. So we deal with the banks and relevant agencies that made the relevant transaction. We found this is a far more effective means of securing the recovery of the funds.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Does it matter where I am based? <span>&#9662;</span></div>
+            <div class="answer">
+                It doesn’t matter where you are based, our team can help you get your money back. So if you have the relevant documentation needed, we can help you regardless of your location.</div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <p>If you still have questions regarding any of this, feel free to reach out to us and we’ll be happy to provide any information you require.</p>
+        <p>You can contact us via phone or email, simply visit our <a href="#">Contact Us</a> page for the relevant details.</p>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.question').forEach(item => {
+            item.addEventListener('click', () => {
+                let answer = item.nextElementSibling;
+                let span = item.querySelector('span');
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    span.innerHTML = '&#9662;';
+                } else {
+                    answer.style.display = 'block';
+                    span.innerHTML = '&#9652;';
+                }
+            });
+        });
+        
+</script>
+
+<br><br><br><br><br><br>
+<div style="background-color: #0d133b; color: white; font-family: Arial, sans-serif; font-size: 20px; line-height: 1.8; text-align: center; padding: 20px; width: 100%; box-sizing: border-box; font-weight: 300;">
+  <div style="max-width: 800px; margin: 0 auto;">
+      Money Back Ltd., which trades as Payback, is Israeli company No. 515711653, authorized and regulated in Israel, and operates globally.<br>
+      In the UK, the company operates through a legal exclusion,<br>
+      which removes the need to be authorized and regulated by the FCA.<br>
+      In Australia, the company is registered as Money Back (Aust) Ltd.,<br>
+      authorized and regulated under ARBN 678842236 | ASIC 562295 |<br>
+      AFCA 109819 | Australian Credit Licence No. 532450
+  </div>
+</div>
+
+
+<div style="background-color: #0a1124; color: white; padding: 20px 0; font-family: Arial, sans-serif; font-size: 14px; width: 100%; box-sizing: border-box;">
+  <div style="max-width: 650px; margin: 0 auto; padding: 0 20px;">
+    <!-- Sitelinks -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 20px; font-weight: bold;">
+      <span>Sitelinks</span>
+      <span onclick="toggleDropdown('sitelinks', this)">
+        <img src="/static/myapp/images/chevron-down-white.693f9381.svg" alt="dropdown arrow" style="width: 24px; height: 24px; cursor: pointer;">
+      </span>
+    </div>
+    <div id="sitelinks" style="display: none; padding: 10px 0; font-size: 15px;">
+      <div style="margin-bottom: 15px;">Testimonial</div>
+      <div style="margin-bottom: 15px;">Contact Us</div>
+      <div style="margin-bottom: 15px;">About Us</div>
+      <div style="margin-bottom: 15px;">FAQ</div>
+      <div style="margin-bottom: 15px;">Affiliated Page</div>
+      <div style="margin-bottom: 0;">Sitemap</div>
+    </div>
+    
+    <hr style="border: 0; border-top: 1px solid #555; margin: 0;" />
+
+    <!-- Contact us -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 20px; font-weight: bold;">
+      <span>Contact Us</span>
+      <span onclick="toggleDropdown('contact', this)">
+        <img src="/static/myapp/images/chevron-down-white.693f9381.svg" alt="dropdown arrow" style="width: 24px; height: 24px; cursor: pointer;">
+      </span>
+    </div>
+    <div id="contact" style="display: none; padding: 10px 0; font-size: 15px;">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="margin-bottom: 10px;">+972-539-538-554 (IL)</li>
+        <li style="margin-bottom: 10px;">+972-777-408-749 (IL)</li>
+        <li style="margin-bottom: 10px;">+1-347-518-4140 (US)</li>
+        <li style="margin-bottom: 10px;">+61-871-001-989 (AU)</li>
+        <li>+46-812-410-614 (SE)</li>
+      </ul>
+    </div>
+    
+    <hr style="border: 0; border-top: 1px solid #555; margin: 0;" />
+
+    <!-- Location -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;font-size: 20px; font-weight: bold;">
+      <span>Location</span>
+      <span onclick="toggleDropdown('location', this)">
+        <img src="/static/myapp/images/chevron-down-white.693f9381.svg" alt="dropdown arrow" style="width: 24px; height: 24px; cursor: pointer;">
+      </span>
+    </div>
+    <div id="location" style="display: none; padding: 10px 0;">
+      <p>Ha-Khilazon St 5, Ramat Gan, Israel, 5252269</p>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #555; margin: 0;" />
+
+    <!-- Office Hours -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;font-size: 20px; font-weight: bold;">
+      <span>Our Office Hours (GMT)</span>
+      <span onclick="toggleDropdown('office-hours', this)">
+        <img src="/static/myapp/images/chevron-down-white.693f9381.svg" alt="dropdown arrow" style="width: 24px; height: 24px; cursor: pointer;">
+      </span>
+    </div>
+    <div id="office-hours" style="display: none; padding: 10px 0; font-size: 20px;">
+      <ul>
+        <li>Mon, Wed - 08:00-17:00</li>
+        <li>Tue, Thu - 10:00-19:00</li>
+        <li>Fri - 08:00-12:00</li>
+        <li>Sat, Sun - Closed</li>
+      </ul>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #555; margin: 0;" />
+
+    <!-- Social -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;font-size: 15px; font-weight: bold;">
+      <span>Social</span>
+      <span onclick="toggleDropdown('social', this)">
+        <img src="/static/myapp/images/chevron-down-white.693f9381.svg" alt="dropdown arrow" style="width: 24px; height: 24px; cursor: pointer;">
+      </span>
+    </div>
+    <div id="social" style="display: none; padding: 10px 0; font-size: 20px;">
+      <ul>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li>YouTube</li>
+      </ul>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #555; margin: 20px 0;" />
+
+    <!-- Footer Links -->
+    <div style="padding: 10px 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: large;">
+        <span>Terms & Conditions</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: large;">
+        <span>Privacy Policy</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: large;">
+        <span>Legal</span>
+      </div>
+      {% load static %}
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: large;">
+  <span>© Payback</span>
+  <img src="{% static 'myapp/images/dmca.png' %}" alt="DMCA" style="height: 30px; width: auto; margin-left: 10px;">
+</div>
+
+    </div>
+
+    
+    
+    </div>
+  </div>
+</div>
+
+  
+
+     
+        
+    
+     
+    
+ 
+
+<div class="disclaimer-section" style="background-color: #19284c; padding: 20px; color: #ffffff;">
+  <!-- Official Partners Section -->
+  <div class="partners" style="text-align: center; margin-bottom: 20px;">
+    <p style="margin: 0; font-size: 18px; font-weight: bold;">Official Partners:</p>
+    <div class="partner-logos" style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+      <img src="{% static 'myapp/images/utech-removebg-preview.png' %}" alt="Utech Global" style="height: 40px;">
+      <img src="{% static 'myapp/images/lstg-removebg-preview.png' %}" alt="LSEG Data & Analytics" style="height: 40px;">
+      <img src="{% static 'myapp/images/infl.png' %}" alt="Influere Investigations" style="height: 40px;">
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div style="text-align: center; margin: 20px 0;">
+    <hr style="border: none; border-top: 1px solid #ffffff; width: 90%; margin: 0 auto;">
+  </div>
+
+  <!-- Disclaimer Section -->
+  <div style="text-align: center; font-family: Arial, sans-serif; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+    <p style="font-size: 16px; margin: 0;">
+      <strong>Disclaimer:</strong> Payback specializes in preparing investigation reports and cryptocurrency tracing reports. We do not engage in any financial services, funds management, or provide financial advice, investment guidance, or related services. The services and products commissioned will incur fees and/or commissions based on the service and the complexity of each case. Our reports are intended for informational purposes only and should not be construed as financial recommendations or endorsements.
+    </p>
+    <p style="font-size: 16px; margin: 20px 0 0;">
+      <strong>For your information:</strong> Although the process of recovering your losses from an online scam can be very tedious and long, sometimes longer than a year, it is a process you can undertake yourself, and it does not require any official representation. For more information on DIY Recovery, 
+      <a href="#" style="color: #69b4ff; text-decoration: underline;">Read This Article.</a>
+    </p>
+  </div>
+</div>
+
+  
+    <script src="{% static 'myapp/js/script.js' %}"></script>
+   
+    <script>
+    
+
+  </script>
+  <script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+
+                // Toggle the display of the content
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    });
+
+    // Function to hide the banner
+    function hideCookieBanner() {
+      const banner = document.getElementById("cookie-banner");
+      banner.style.display = "none"; // Hide the banner
+      document.body.style.paddingTop = "0"; // Reset padding to remove the space
+    }
+
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+  const menu = document.getElementById("menu-items");
+  if (menu.style.display === "none" || menu.style.display === "") {
+    menu.style.display = "block";
+  } else {
+    menu.style.display = "none";
+  }
+});
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("active");
+}
+
+document.getElementById("toggleDropdown").addEventListener("click", function () {
+    const countryCodeSelect = document.getElementById("countryCode");
+    countryCodeSelect.focus(); // Bring focus to the select element
+    countryCodeSelect.size = countryCodeSelect.size === 1 ? countryCodeSelect.options.length : 1;
+});
+
+// Collapse the dropdown when it loses focus
+document.getElementById("countryCode").addEventListener("blur", function () {
+    this.size = 1;
+});
+
+document.getElementById("toggleDropdown").addEventListener("click", function () {
+    const countryCodeSelect = document.getElementById("countryCode");
+    
+    // Toggle the size attribute
+    if (countryCodeSelect.size === 1) {
+        countryCodeSelect.size = countryCodeSelect.options.length; // Expand
+    } else {
+        countryCodeSelect.size = 1; // Collapse
+    }
+});
+
+// Collapse the dropdown when it loses focus
+document.getElementById("countryCode").addEventListener("blur", function () {
+    this.size = 1;
+});
+
+
+
+
+function toggleDropdown(id, arrow) {
+    const element = document.getElementById(id);
+    const img = arrow.querySelector('img');
+    
+    if (element.style.display === "none" || element.style.display === "") {
+      element.style.display = "block";
+      img.style.transform = "rotate(180deg)";  // Rotate the arrow to face up
+    } else {
+      element.style.display = "none";
+      img.style.transform = "rotate(0deg)";    // Reset the arrow to face down
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+  // Select all <li> elements inside the pricing section
+  const listItems = document.querySelectorAll('.pricing-card ul li');
+
+  // Add event listeners to each <li>
+  listItems.forEach((item) => {
+    item.addEventListener('click', function () {
+      // Check if a message already exists below the clicked <li>
+      const existingMessage = item.querySelector('.message');
+
+      // If a message already exists, remove it
+      if (existingMessage) {
+        existingMessage.remove();
+      } else {
+        // Create a new <div> element to display the message
+        const message = document.createElement('div');
+        message.classList.add('message');
+        let messageText = '';
+
+        // Extract only the text content of the <li>
+        const itemText = item.textContent.trim(); // Get the text content of the list item
+
+        // Set the message based on the clicked <li>
+        switch (itemText) {
+          case 'Case Review':
+            messageText =
+              'Performing preliminary checks to assess whether your case can result in a substantial recovery. Based on our experience.';
+            break;
+          case 'Evidence Gathering':
+            messageText =
+              'Gathering evidence to support your case with thorough research.';
+            break;
+          case 'Investigation Report':
+            messageText =
+              'Creating a detailed report of the investigation findings for you.';
+            break;
+          case 'Recommended Action Plan':
+            messageText =
+              'Providing actionable steps based on the findings of the investigation.';
+            break;
+          case 'Consultation Call':
+            messageText =
+              'Scheduling a free consultation call to discuss the case.';
+            break;
+          case 'Preliminary Case Review':
+            messageText =
+              'Performing a quick review of the case to assess the potential for further investigation.';
+            break;
+          case 'Asset Movement Investigation':
+            messageText =
+              'Investigating the movement of assets related to the case.';
+            break;
+          case 'Perpetrators Investigation':
+            messageText =
+              'Investigating the individuals responsible for the fraudulent activities.';
+            break;
+          default:
+            messageText = 'No details available.';
+        }
+
+        // Set the text of the new message
+        message.textContent = messageText;
+
+        // Append the message below the clicked <li>
+        item.appendChild(message);
+      }
+    });
+  });
+});
+
+</script>
+</body>
+
+</html>
+

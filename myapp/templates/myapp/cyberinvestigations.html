@@ -1,0 +1,1310 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payback Clone</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <!-- Add Swiper's CSS -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+      
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <style>
+    
+    .dropdown-arrow {
+  font-size: 14px;
+  margin-left: 5px;
+}
+    /* Cookie Banner Styles */
+    .cookie-banner {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      height: 40px; /* Reduced height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 9999; /* Ensure it stays above other elements */
+    }
+    .cookie-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Add space between text and button */
+      font-size: 14px; /* Adjusted font size */
+    }
+    .cookie-link {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .cookie-link:hover {
+      text-decoration: underline;
+    }
+    .cookie-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px; /* Adjusted padding for smaller button */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .cookie-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Body Padding for Cookie Banner */
+    body {
+      margin: 0;
+      padding-top: 40px; /* Match the reduced height of the banner */
+    }
+/* Base styles for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #002855; /* Dark navy blue */
+  padding: 10px 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Left section with logo */
+.navbar-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-left .shield {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #002855;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-left span {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Right section with icons and menu */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right .icon img {
+  width: 28px;
+  height: 28px;
+  filter: invert(100%); /* Converts the icon to white */
+}
+
+.navbar-right .menu-divider {
+  width: 1px;
+  height: 30px;
+  background-color: white;
+}
+
+.navbar-right .menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.navbar-right .menu-icon span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+/* Dropdown menu */
+.navbar-dropdown {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #002855;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  z-index: 9999;
+}
+
+.navbar-dropdown a {
+  color: rgb(194, 192, 192);
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  
+}
+
+.navbar-dropdown a:hover {
+  background-color: #0056b3;
+  border-radius: 3px;
+}
+
+/* Dropdown menu active state */
+.navbar-dropdown.active {
+  display: flex;
+  
+}
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #001f3f;
+  color: white;
+  
+}
+.navbar-dropdown {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.accordion-content {
+  transition: max-height 0.3s ease-out;
+}
+
+.navbar-left .logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+  width: 24px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+}
+
+/* Dropdown */
+.navbar-dropdown {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 100%;
+  height: 90%;
+  background-color: #ffffff;
+  color: #001f3f;
+ 
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+/* Accordion */
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+  
+}
+
+.accordion-header {
+  font-size: 18px;
+  padding: 30px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #001f3f;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f5f5f5;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+}
+
+.accordion-item.open .accordion-content {
+  display: block;
+  
+}
+
+/* Footer info section styles */
+.footer-info {
+  background-color: #12245a; /* Dark navy blue */
+  color: white; /* White text */
+  text-align: center; /* Center-align the text */
+  padding: 20px; /* Space around the text */
+  font-family: Arial, sans-serif; /* Font for text */
+  font-size: 14px; /* Size for the text */
+  line-height: 1.8; /* Improve readability with line spacing */
+}
+
+.footer-info p {
+  margin: 0 0 15px; /* Add space between paragraphs */
+}
+}
+    .cookie-space {
+      height: 50px; /* Adjust height based on the banner's height */
+    }
+
+    /* Navigation Bar Styles */
+    .nav-bar {
+      background-color: #002855;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Dropdown Arrow */
+.dropdown-arrow {
+  float: right;
+  width: 12px;
+  height: 12px;
+  border: solid #001f3f;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-top: 5px;
+  transform: rotate(45deg); /* Default arrow pointing down */
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when the section is open */
+.accordion-item.open .dropdown-arrow {
+  transform: rotate(-135deg); /* Arrow pointing up */
+}
+
+   </style>
+      
+</head>
+<body>
+  <section class="cookie-banner" id="cookie-banner">
+    <span>We use cookies – <a href="#" class="cookie-link">Here's why...</a></span>
+    <button class="cookie-button" onclick="hideCookieBanner()">OK</button>
+  </section>
+  
+  <!-- Spacer to avoid overlapping navigation -->
+  <div class="cookie-space" id="cookie-space"></div>
+  
+  <!-- Navbar Dropdown with Accordion -->
+<!-- Spacer to avoid overlapping navigation -->
+<div class="cookie-space" id="cookie-space"></div>
+<!-- Navbar Dropdown with Accordion -->
+<div class="navbar-dropdown" id="menu">
+  <!-- Testimonials Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <a href="{% url 'testimonials' %}" style="color: #001f3f;">Testimonials</a>
+
+
+
+      
+      <span class="dropdown-arrhow"></span>
+    </div>
+    <div class="accordion-content">
+      
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Services
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+     
+      <!-- Sub-menu under Services -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Investigation
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li style="background-color: white;">
+              <a href="{% url 'cyberinvestigations' %}" style="text-decoration: none; color: black;">
+                Cyber Investigation (Fraud Investigation)
+              </a>
+            </li>
+            
+            <li>Crypto Asset Tracing</li>
+            <li>KYC Service</li>
+            <li>Binary Currency Scam</li>
+            <li>Forex Scam</li>
+            <li>Digital Currency Scam</li>
+            <li>Stock Trading Scam</li>
+            <li>Credit Card Phishing Scam</li>
+            <li>Property Scam</li>
+            <li>Romance Scam</li>
+            <li>Other Scams</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          ADR Courses
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#adr_course">ADR Course</a>
+          <a href="#adr_advanced_course">ADR Advanced Course</a>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Professional Consulting
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li>Scam Restitution Consulting</li>
+            <li>ADR Guidance</li>
+            <li>Claims & Disputes</li>
+            <li>Forced Account Liquidation</li>
+            <li>Regulatory Compliance & Other Services</li>
+            <li>SRMI Compliance</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          B2B Cyber Security
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li>Blue Team</li>
+            <li>Red Team</li>
+            <li>Security Consulting</li>
+            <li>Cyber Intelligence</li>
+            <li>Social Engineering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Safety Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Online Safety
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#safety1">Whistleblowing</a>
+      <br>
+      <a href="#safety2">Scam</a>
+      <br>
+      <a href="#safety2">imposters & opycats</a>
+      <br>
+      <a href="#safety2">Fraud prevention Tools</a>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Blog
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#blog1">Latest Posts</a>
+    </div>
+  </div>
+
+  <!-- Payback Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Payback
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#payback1">Details</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      FAQ
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#faq1">General Questions</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar Dropdown with Accordion -->
+<div class="navbar-dropdown" id="menu">
+  <!-- Testimonials Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Testimonials
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#testimonials1">Testimonial 1</a>
+      <a href="#testimonials2">Testimonial 2</a>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Services
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#services1">Service 1</a>
+      <a href="#services2">Service 2</a>
+
+      <!-- Sub-menu under Services -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Investigation
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#investigation1">Investigation Service 1</a>
+          <a href="#investigation2">Investigation Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Education
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#education1">Education Service 1</a>
+          <a href="#education2">Education Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Professional Consulting
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#consulting1">Consulting Service 1</a>
+          <a href="#consulting2">Consulting Service 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          B2B Cyber Security
+          <span class="dropdown-arrow"></span>
+        </div>
+        <div class="accordion-content">
+          <a href="#cybersecurity1">Cyber Security Service 1</a>
+          <a href="#cybersecurity2">Cyber Security Service 2</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Safety Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Online Safety
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#safety1">Safety Tip 1</a>
+      <a href="#safety2">Safety Tip 2</a>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Blog
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#blog1">Latest Posts</a>
+    </div>
+  </div>
+
+  <!-- Payback Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      Payback
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#payback1">Details</a>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      FAQ
+      <span class="dropdown-arrow"></span>
+    </div>
+    <div class="accordion-content">
+      <a href="#faq1">General Questions</a>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-left">
+    <div class="logo">
+      <div class="shield">PB</div>
+      <span>PAYBACK</span>
+    </div>
+  </div>
+  <div class="navbar-right">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </div>
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User">
+    </div>
+    <div class="menu-divider"></div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Navbar Dropdown with Accordion -->
+    <div class="navbar-dropdown" id="menu">
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Testimonials
+        </div>
+        <div class="accordion-content">
+          <a href="#testimonials1">Testimonial 1</a>
+          <a href="#testimonials2">Testimonial 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Services
+        </div>
+        <div class="accordion-content">
+          <a href="#services1">Service 1</a>
+          <a href="#services2">Service 2</a>
+          
+          <!-- Sub-menu under Services -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Investigation
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#investigation1">Investigation Service 1</a>
+              <a href="#investigation2">Investigation Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Education
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#education1">Education Service 1</a>
+              <a href="#education2">Education Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              Professional Consulting
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#consulting1">Consulting Service 1</a>
+              <a href="#consulting2">Consulting Service 2</a>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              B2B Cyber Security
+              <span class="dropdown-arrow"></span>
+            </div>
+            <div class="accordion-content">
+              <a href="#cybersecurity1">Cyber Security Service 1</a>
+              <a href="#cybersecurity2">Cyber Security Service 2</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Online Safety
+        </div>
+        <div class="accordion-content">
+          <a href="#safety1">Safety Tip 1</a>
+          <a href="#safety2">Safety Tip 2</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Blog
+        </div>
+        <div class="accordion-content">
+          <a href="#blog1">Latest Posts</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Payback
+        </div>
+        <div class="accordion-content">
+          <a href="#payback1">Details</a>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          FAQ
+        </div>
+        <div class="accordion-content">
+          <a href="#faq1">General Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  
+<section class="hero-section">
+    <div class="container">
+        <!-- Hero Content -->
+        <div class="hero-text">
+            <h1>Get your money back <br><span>from a scam</span></h1>
+            <p>Thousands of clients used our Investigation Report<br>to retrieve their losses. Start with securing a free <br> consultation now.</p>
+        </div>
+    </div>
+
+   
+<!-- Form Section -->
+<div class="form-container">
+  <h2>Start here</h2>
+  <p>Secure a free consultation</p>
+  <form id="consultationForm" method="POST" action="{% url 'submit_form' %}">
+      {% csrf_token %}
+      <div class="form-group">
+          <div class="form-column">
+              <input type="text" name="first_name" id="firstName" placeholder="Your Name*" required>
+          </div>
+          <div class="form-column">
+              <input type="text" name="last_name" id="lastName" placeholder="Last Name*" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="form-column">
+              <input type="tel" name="phone_number" id="phoneNumber" placeholder="+237 Phone Number*" required>
+          </div>
+          <div class="form-column">
+              <input type="email" name="email" id="email" placeholder="Enter your E-mail*" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <input
+              type="text"
+              name="investment"
+              id="investInput"
+              class="invest-input"
+              placeholder="How much did you invest ($)*"
+              required
+              readonly
+          >
+          <button type="button" id="togglePriceRange" class="toggle-btn" aria-label="Toggle Price Range">
+              &gt;
+          </button>
+          <div id="priceRangeOptions" class="price-range-options" style="display: none;">
+              <label>
+                  <input type="radio" name="investment_option" value="$50 - $100">
+                  $50 - $100
+              </label>
+              <label>
+                  <input type="radio" name="investment_option" value="$100 - $500">
+                  $100 - $500
+              </label>
+              <label>
+                  <input type="radio" name="investment_option" value="$500 - $1000">
+                  $500 - $1000
+              </label>
+              <label>
+                  <input type="radio" name="investment_option" value="$1000 - $5000">
+                  $1000 - $5000
+              </label>
+              <label>
+                  <input type="radio" name="investment_option" value="$5000+">
+                  $5000+
+              </label>
+          </div>
+      </div>
+      <div class="form-group">
+          <textarea name="case_outline" id="caseOutline" placeholder="Outline your case*" required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+  </form>
+</div>
+
+</section>"
+<br>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa;">
+    <div style="text-align: center; padding: 20px;">
+      <h2 style="color: #091e42; font-size: 24px; margin-bottom: 20px;">Some of the frauds we investigated</h2>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <button style="background: none; border: none; cursor: pointer;">
+          <span style="font-size: 20px; font-weight: bold; color: #091e42;">&#8249;</span>
+        </button>
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <img src="{% static 'myapp/images/logo-1.png' %}" alt="OneCapital Trade" style="height: 40px;">
+          <img src="{% static 'myapp/images/logo-2.png' %}" alt="Lyraten" style="height: 40px;">
+          <img src="{% static 'myapp/images/logo-3.png' %}" alt="Onex" style="height: 40px;">
+        </div>
+        <button style="background: none; border: none; cursor: pointer;">
+          <span style="font-size: 20px; font-weight: bold; color: #091e42;">&#8250;</span>
+        </button>
+      </div>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 5px;">
+        <span style="width: 8px; height: 8px; background-color: #091e42; border-radius: 50%;"></span>
+        <span style="width: 8px; height: 8px; background-color: #ccc; border-radius: 50%;"></span>
+        <span style="width: 8px; height: 8px; background-color: #ccc; border-radius: 50%;"></span>
+        <span style="width: 8px; height: 8px; background-color: #ccc; border-radius: 50%;"></span>
+      </div>
+    </div>
+  
+      <section class="how-it-works">
+        <h2>How it works</h2>
+        <div class="steps-container">
+          <div class="step">
+            <i class="icon">🔍</i>
+            <h3>Review your case</h3>
+            <p>Based on our experience, we are performing preliminary checks to assess whether your case can result in a substantial retrieval of losses.</p>
+          </div>
+          <div class="step">
+            <i class="icon">📜</i>
+            <h3>Gather the evidence</h3>
+            <p>We then gather every piece of evidence you have from your contact with the scammers along the way.</p>
+          </div>
+          <div class="step">
+            <i class="icon">📝</i>
+            <h3>Investigation Report</h3>
+            <p>We investigate your case and the people who scammed you to provide a detailed Investigation Report.</p>
+          </div>
+          <div class="step">
+            <i class="icon">🛠️</i>
+            <h3>Action Plan</h3>
+            <p>With our investigation Report, you'll receive a step-by-step action plan explaining how we believe you can retrieve your losses.</p>
+          </div>
+          <div class="step">
+            <i class="icon">🤝</i>
+            <h3>Expert Assistance</h3>
+            <p>Our team of experts can guide you through the process of recovering your losses.</p>
+          </div>
+          <div class="step">
+            <i class="icon">💸</i>
+            <h3>Get your money back</h3>
+            <p>Once you successfully execute the action plan, you'll recover your lost funds.</p>
+          </div>
+        </div>
+      </section>
+      <!-- Section 1: Money Retrieved -->
+
+  
+ <!-- Section 1: Money Retrieved -->
+<section class="money-retrieved">
+    <div class="container">
+      <h2>Money retrieved so far in 2024</h2>
+      <h1>$2,600,931</h1>
+      <a href="#free-consultation" class="cta-button">Get a free consultation</a>
+    </div>
+  </section>
+  
+  <!-- Section 2: Information Cards -->
+ <!-- Section: Information Cards -->
+<section class="info-section">
+    <div class="container">
+      <!-- Card 1: Why Work With Us -->
+      <div class="card">
+        <img src="handshake-icon.png" alt="Why work with us">
+        <h3>Why work with us?</h3>
+        <p>We simplify the process to ensure efficiency, professionalism, and optimal results tailored to your needs.</p>
+        <a href="#learn-more" class="button-link">Learn more</a>
+      </div>
+  
+      <!-- Card 2: Money Back Guarantee -->
+      <div class="card">
+        <img src="{% static 'myapp/images/icon1.jpeg' %}" alt="Money Back Guarantee">
+        <h3>Your money back guarantee</h3>
+        <p>100% refund guaranteed if we fail to meet your expectations. Your satisfaction is our priority.</p>
+        <a href="#read-terms" class="button-link">Read terms & conditions</a>
+      </div>
+  
+      <!-- Card 3: Beware of Copycats -->
+      <div class="card">
+        <img src="copycat-icon.png" alt="Beware of Copycats">
+        <h3>Beware of copycats & imposters</h3>
+        <p>Scammers may imitate our success. Here’s how to ensure you’re working with the real deal.</p>
+        <a href="#learn-more" class="button-link">Explore the full list</a>
+      </div>
+  
+      <!-- Card 4: Scam Provider -->
+      <div class="card">
+        <img src="scam-icon.png" alt="Scam Provider">
+        <h3>Is your service provider a scam?</h3>
+        <p>Check our detailed list of fraudulent providers to protect yourself and your finances.</p>
+        <a href="#explore" class="button-link">Explore the full list</a>
+      </div>
+    </div>
+  </section>
+  <div class="scam-recovery-section">
+    <div class="header">
+      <h1>Retrieve your money from a scam!</h1>
+      <p>Thousands of clients used our Investigation Report to retrieve their losses. Start with a free consultation</p>
+      <div class="dropdown-container">
+        <select>
+          <option>Choose a scam type</option>
+          <option>Online Scam</option>
+          <option>Investment Fraud</option>
+          <option>Phishing Scam</option>
+        </select>
+        <button class="cta-button">Get a free consultation</button>
+      </div>
+    </div>
+  </div>
+ 
+  <section class="video-reviews">
+    <h2>Video reviews</h2>
+    <div class="carousel">
+      <div class="carousel-track-container">
+        <ul class="carousel-track">
+          <li class="carousel-slide">
+            <div class="video-thumbnail" style="background-color: #ffd700;">
+              <span class="play-button">▶</span>
+            </div>
+          </li>
+          <li class="carousel-slide">
+            <div class="video-thumbnail" style="background-color: #003366;">
+              <span class="play-button">▶</span>
+            </div>
+          </li>
+          <li class="carousel-slide">
+            <div class="video-thumbnail" style="background-color: #ff5733;">
+              <span class="play-button">▶</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      
+      <button class="next-btn">◀</button>
+      <div class="carousel-nav">
+       
+        <button class="carousel-dot active"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
+      </div>
+      <button class="next-btn">▶</button>
+    </div>
+    <a href="{% url 'testimonials' %}">
+      <button class="more-reviews">See more video reviews</button>
+  </a>
+  
+  </section>
+  <section class="scam-types-section">
+    <h2>The types of scams we can help you with</h2>
+    <table class="scam-types-table">
+      <tr>
+        <td>
+          <i class="fas fa-chart-line"></i>
+          Binary options
+        </td>
+        <td>
+          <i class="fas fa-coins"></i>
+          Digital Currency
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="fas fa-exchange-alt"></i>
+          Forex
+        </td>
+        <td>
+          <i class="fas fa-home"></i>
+          Property scams
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="fas fa-credit-card"></i>
+          Credit card phishing
+        </td>
+        <td>
+          <i class="fas fa-chart-bar"></i>
+          Stock trading
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="fas fa-heart"></i>
+          Romance
+        </td>
+        <td>
+          <i class="fas fa-ellipsis-h"></i>
+          Other scams
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+
+  <section>
+    <div class="accordion-container">
+      <div class="accordion-title">More about Payback and our Fraud Investigation Services</div>
+
+      <div class="accordion-item">
+          <div class="accordion-header">
+              <span>About Payback</span>
+              <span>&#x25BC;</span>
+          </div>
+          <div class="accordion-content">
+              <p>Payback is a trusted fraud investigation service specializing in retrieving lost funds due to scams.</p>
+          </div>
+      </div>
+
+      <div class="accordion-item">
+          <div class="accordion-header">
+              <span>How do Our Investigation Reports help retrieve losses?</span>
+              <span>&#x25BC;</span>
+          </div>
+          <div class="accordion-content">
+              <p>Our detailed reports provide legal evidence and assist in resolving disputes to recover your funds.</p>
+          </div>
+      </div>
+
+      <div class="accordion-item">
+          <div class="accordion-header">
+              <span>Do all cases end with a successful outcome?</span>
+              <span>&#x25BC;</span>
+          </div>
+          <div class="accordion-content">
+              <p>While success depends on the circumstances, we are committed to doing everything possible to help.</p>
+          </div>
+      </div>
+
+      <div class="accordion-item">
+          <div class="accordion-header">
+              <span>How do I know if I have a chance of retrieving my money?</span>
+              <span>&#x25BC;</span>
+          </div>
+          <div class="accordion-content">
+              <p>We evaluate each case carefully and provide an honest assessment of your chances of recovery.</p>
+          </div>
+      </div>
+  </div>
+  </section>
+  <div class="scam-recovery-section">
+    <div class="header">
+      <h1>Retrieve your money from a scam!</h1>
+      <p>Thousands of clients used our Investigation Report to retrieve their losses. Start with a free consultation</p>
+      <div class="dropdown-container">
+        <select>
+          <option>Choose a scam type</option>
+          <option>Online Scam</option>
+          <option>Investment Fraud</option>
+          <option>Phishing Scam</option>
+        </select>
+        <button class="cta-button">Get a free consultation</button>
+      </div>
+    </div>
+  </div>
+  <section class="latest-articles">
+    <h2 class="section-title">Latest articles</h2>
+    <div class="articles-carousel">
+      <div class="carousel-item">
+        <img src="path/to/image1.jpg" alt="Article 1 Image" class="article-image">
+        <div class="article-info">
+          <p class="article-date"><i class="fa fa-calendar"></i> December 31, 2024</p>
+          <h3 class="article-title">AI vs. Scammers: How Google is Using Artificial Intelligence...</h3>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="path/to/image2.jpg" alt="Article 2 Image" class="article-image">
+        <div class="article-info">
+          <p class="article-date"><i class="fa fa-calendar"></i> December 31, 2024</p>
+          <h3 class="article-title">Protecting Yourself and Your Loved Ones From Holiday...</h3>
+        </div>
+      </div>
+      <!-- Add more items here -->
+    </div>
+    <div class="carousel-navigation">
+      <button class="prev-slide">&lt;</button>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <button class="next-slide">&gt;</button>
+    </div>
+  </section>
+  <section class="contact-section">
+    <h2 class="contact-title">Contact us now to get started</h2>
+    <p class="contact-subtitle">
+        Our team of experts is here to help. If you've been ripped off by scammers, get in touch now.
+    </p>
+    <form class="contact-form" method="POST" action="{% url 'contact_request_view' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <select name="purpose" class="form-control">
+                <option value="">I want to...</option>
+                <option value="report">Report a scam</option>
+                <option value="consult">Consult an expert</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="phone-group">
+                <select name="country_code" class="country-code">
+                    <option value="+237">🇨🇲 +237</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                </select>
+                <input type="tel" name="phone" placeholder="6 71 23 45 67" class="form-control" required>
+            </div>
+            <input type="email" name="email" placeholder="Enter your E-mail" class="form-control" required>
+        </div>
+        <div class="form-row">
+            <select name="scam_type" class="form-control">
+                <option value="">Choose a scam type</option>
+                <option value="phishing">Phishing</option>
+                <option value="identity_theft">Identity Theft</option>
+                <option value="online_fraud">Online Fraud</option>
+            </select>
+            <input type="text" name="amount_lost" placeholder="How much was lost" class="form-control">
+        </div>
+        <div class="form-group">
+            <textarea name="case_outline" rows="4" placeholder="Outline your case" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Get a free consultation</button>
+    </form>
+</section>
+
+  <section class="statement-section">
+    <div class="statement-container">
+      <div class="statement-content">
+        <p class="statement-subtitle">Statement on recent events:</p>
+        <h2 class="statement-title">Payback is back</h2>
+        <p class="statement-text">
+          As you may be aware, the U.S. Department of Justice (DOJ) and the FBI have conducted an investigation into a number of recovery companies, including Payback. Payback fully cooperated with the authorities throughout their investigation, and we are pleased with their decision to return our website in order to resume our operations in the US.
+        </p>
+        <p class="statement-text">
+          This inquiry into Payback was an opportunity for us to perfect our product and services and ensure stricter compliance with applicable US law. We look forward to continuing our work helping victims of online scams get their money back.
+        </p>
+      </div>
+      <div class="statement-image">
+        <img src="your-image-path.svg" alt="Payback Logo" />
+      </div>
+    </div>
+  </section>
+  <section class="footer-info">
+    <p>
+      Money Back Ltd., which trades as Payback, is an Israeli company No. 515711653, authorized and regulated in Israel, and operates globally.
+    </p>
+    <p>
+      In the UK, the company operates through a legal exclusion, which removes the need to be authorized and regulated by the FCA.
+    </p>
+    <p>
+      In Australia, the company is registered as Money Back (Aust) Ltd, authorized and regulated under ARBN 678842236 | ASIC 562295 | AFCA 103819 | Australian Credit Licence No. 532450
+    </p>
+  </section>
+  
+  <footer style="background-color: #0c1130; color: white; padding: 20px; font-family: Arial, sans-serif;">
+    <div class="footer-container">
+      <!-- Sitelinks Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('sitelinks')">Sitelinks <span class="dropdown-arrow">▼</span></h4>
+        <ul id="sitelinks" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Testimonial</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Contact Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">FAQ</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Affiliated Page</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Sitemap</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Us Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('contactus')">Contact us <span class="dropdown-arrow">▼</span></h4>
+        <ul id="contactus" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Email Us</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Call Us</a></li>
+        </ul>
+      </div>
+  
+      <!-- Location Section -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('location')">Location <span class="dropdown-arrow">▼</span></h4>
+        <ul id="location" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Our Offices</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Maps</a></li>
+        </ul>
+      </div>
+  
+      <!-- Other Sections -->
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('officehours')">Our office hours (GMT) <span class="dropdown-arrow">▼</span></h4>
+        <ul id="officehours" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Monday - Friday: 9AM - 5PM</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4 onclick="toggleDropdown('social')">Social <span class="dropdown-arrow">▼</span></h4>
+        <ul id="social" class="dropdown-links">
+          <li><a href="#" style="color: white; text-decoration: none;">Facebook</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Twitter</a></li>
+          <li><a href="#" style="color: white; text-decoration: none;">Instagram</a></li>
+        </ul>
+      </div>
+  
+      <hr style="border: 1px solid white; margin: 10px 0;" />
+      <div class="footer-links">
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Terms & Conditions</a>
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Privacy Policy</a>
+        <a href="#" style="color: white; margin-right: 10px; text-decoration: none;">Legal</a>
+      </div>
+      <div class="footer-bottom" style="margin-top: 10px;">
+        <span>© Payback</span>
+        <span style="float: right;">
+          <span style="background-color: #666; color: white; padding: 2px 5px; margin-right: 5px;">DMCA</span>
+          <span style="background-color: #222; color: white; padding: 2px 5px;">PROTECTED</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+  <div class="disclaimer-section">
+    <div class="partners">
+      <p>Official Partners:</p>
+      <div class="partner-logos">
+        <img src="utech-logo.png" alt="Utech Global">
+        <img src="lseg-logo.png" alt="LSEG Data & Analytics">
+        <img src="influere-logo.png" alt="Influere Investigations">
+      </div>
+    </div>
+    <hr>
+    <div class="disclaimer">
+      <p>
+        <strong>Disclaimer:</strong> Payback specializes in preparing investigation reports and cryptocurrency tracing reports.
+        We do not engage in any financial services, funds management, or provide financial advice, investment guidance, or related services.
+        The services and products commissioned will incur fees and/or commissions based on the service and the complexity of each case.
+        Our reports are intended for informational purposes only and should not be construed as financial recommendations or endorsements.
+      </p>
+    </div>
+    <div class="info">
+      <p>
+        <strong>For your information:</strong> Although the process of recovering your losses from an online scam can be very tedious and long,
+        sometimes longer than a year, it is a process you can undertake yourself, and it does not require any official representation.
+        For more information on DIY Recovery, <a href="your-article-link.html">Read This Article.</a>
+      </p>
+    </div>
+    <div class="note">
+      <p>The Company cannot accept prohibited payment methods.</p>
+    </div>
+  </div>
+  
+    <script src="{% static 'myapp/js/script.js' %}"></script>
+   
+    <script>
+    
+
+  </script>
+  <script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+
+                // Toggle the display of the content
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    });
+
+    // Function to hide the banner
+    function hideCookieBanner() {
+      const banner = document.getElementById("cookie-banner");
+      banner.style.display = "none"; // Hide the banner
+      document.body.style.paddingTop = "0"; // Reset padding to remove the space
+    }
+
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+  const menu = document.getElementById("menu-items");
+  if (menu.style.display === "none" || menu.style.display === "") {
+    menu.style.display = "block";
+  } else {
+    menu.style.display = "none";
+  }
+});
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("active");
+}
+
+</script>
+</body>
+
+</html>
